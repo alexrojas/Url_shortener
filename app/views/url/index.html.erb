@@ -1,0 +1,28 @@
+<h1 style="text-align:center">Url Address</h1>
+
+<%= form_tag '/url_create' do %>
+  <%= text_field(:url, :name, :placeholder=>'Enter your url', :class=>'form-control text-center' ) %>
+  <%= submit_tag('Submit', :class=>'btn btn-primary form-control ') %>
+<% end %>
+
+
+<% if @urls.any? %>
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Original URL</th>
+      <th>Shortened URL</th>
+    </tr>
+  <% @urls.each do |url| %>
+    <tr>
+      <td><%= url.id %> </td>
+      <td><%= url.name %> </td>
+      <td>
+        <%= link_to url.short, short_path(short: url.short), target: :_blank %>
+      </td>
+    </tr>
+  <% end %>
+  </table>
+<% else %>
+   <p>No shortened urls yet.</p>
+<% end %>
