@@ -1,28 +1,44 @@
-<h1 style="text-align:center">Url Address</h1>
 
-<%= form_tag '/url_create' do %>
-  <%= text_field(:url, :name, :placeholder=>'Enter your url', :class=>'form-control text-center' ) %>
-  <%= submit_tag('Submit', :class=>'btn btn-primary form-control ') %>
-<% end %>
+<div class="jumbotron">
+  <h1 class="display-4">Url Shortener!</h1>
+  <p class="lead">This is a simple App that converts a long Url to a short one.</p>
 
-
-<% if @urls.any? %>
-  <table>
-    <tr>
-      <th>Id</th>
-      <th>Original URL</th>
-      <th>Shortened URL</th>
-    </tr>
-  <% @urls.each do |url| %>
-    <tr>
-      <td><%= url.id %> </td>
-      <td><%= url.name %> </td>
-      <td>
-        <%= link_to url.short, short_path(short: url.short), target: :_blank %>
-      </td>
-    </tr>
+  <%= form_tag '/url_create' do %>
+    <%= text_field(:url, :name, :placeholder=>'Enter your url', :class=>'form-control text-center' ) %>
+    <%= submit_tag('Submit', :class=>'btn btn-primary form-control ') %>
   <% end %>
-  </table>
-<% else %>
-   <p>No shortened urls yet.</p>
-<% end %>
+  <br>
+  <br>
+
+  <% if @urls.any? %>
+    <table class="table table-bordered table-hover">
+      <!-- <thead class="table"> -->
+      <tr class='table-active'>
+        <th>Id</th>
+        <th>Original URL</th>
+        <th>Shortened URL</th>
+      </tr>
+    <% @urls.each do |url| %>
+      <tr>
+        <td><%= url.id %> </td>
+        <td><%= url.name %> </td>
+        <td>
+          <%= link_to url.short, short_path(short: url.short), target: :_blank %>
+        </td>
+      </tr>
+    <% end %>
+    </table>
+  <% else %>
+     <p>No shortened urls yet.</p>
+  <% end %>
+
+
+
+</div>
+
+
+
+
+
+
+<!-- <h1 style="text-align:center">Url Address</h1> -->
